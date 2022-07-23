@@ -31,7 +31,7 @@ game = True
 while game == True:
     #Set the dice value for player position
     for i in range(numOfPlayers):
-        bPos[i] = rolls_1[0] + bPos[i]
+        bPos[i] = rolls_2[0] + bPos[i]
         # Always using index 0 as reference by using it for dice roll and deleting after using it
         del rolls_1[0]
         # Board has only 9 positions! Subtract the position number to 9 to wrap around if it equals or exceeds 9
@@ -58,6 +58,7 @@ while game == True:
         # property the player landed is available, and want to buy it? money will be subtracted from their initial money and property will be added into their owned portfolio
         else:
             print(f"Buy for {board[bPos[i]][1]}$")
+            # Players get 1$ everytime he pass GO
             if board[bPos[i]][1]== "no":
                 money[i] += 1
             elif money[i] >= board[bPos[i]][1]:
@@ -67,8 +68,17 @@ while game == True:
                 print(f"Congratulations! {players[i]} bought {board[bPos[i]][0]}. Your new balance is {(money[i])}$")
             else:
                 print("Uh oh! You can't afford this!")
-        print(f"Board Position will be {bPos[i]} and owned properties will be {own[i]}")
+        print(f"{players[i]}'s Board Position will be {bPos[i]} and owned properties will be {own[i]}")
         if money[i] < 1:
             print(f"{players[i]} has gone bankrupt! He lost the game!.")
             game = False
+
+# largest_amount = money[0]
+# for amount in money:
+#     if amount > largest_amount:
+#         largest_amount = amount
+# print(f"Highest Amount is {largest_amount}")
+
+print(f"Peter's Money: {money[0]}, Billy's Money: {money[1]}, Charlotte's Money: {money[2]}, Sweedal's Money: {money[3]}")
+
             
