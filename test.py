@@ -38,6 +38,8 @@ while game == True:
                 rent_owed = 3
                 money[i] = money[i] - rent_owed
                 print(f"Unfortunately {board[bPos[i]][0]} is owned by another player. You paid $ {rent_owed} in rent. Your new balance is $ {(money[i])}")
+                
+                # Adding the person rented money to the person who owned the property
                 if board[bPos[i]][0] in own[0]:
                     money[0] +=3
                 elif board[bPos[i]][0] in own[1]:
