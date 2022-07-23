@@ -31,7 +31,7 @@ game = True
 while game == True:
     #Set the dice value for player position
     for i in range(numOfPlayers):
-        bPos[i] = rolls_2[0] + bPos[i]
+        bPos[i] = rolls_1[0] + bPos[i]
         # Always using index 0 as reference by using it for dice roll and deleting after using it
         del rolls_1[0]
         # Board has only 9 positions! Subtract the position number to 9 to wrap around if it equals or exceeds 9
