@@ -32,13 +32,17 @@ while game == True:
     #Set the dice value for player position
     for i in range(numOfPlayers):
         bPos[i] = rolls_1[i] + bPos[i]
+        # Board has only 9 positions! Subtract the position number to 9 to wrap around if it equals or exceeds 9
+        if bPos[i] >= 9:
+            bPos[i] = bPos[i]-9
+        
+
         # property the player landed on is not available, and if they don't own it? rent will be subtracted from that players balance.
         if board[bPos[i]][0] != available[bPos[i]]:
             if board[bPos[i]][0] not in own[i]:
                 rent_owed = 3
                 money[i] = money[i] - rent_owed
                 print(f"Unfortunately {board[bPos[i]][0]} is owned by another player. You paid $ {rent_owed} in rent. Your new balance is $ {(money[i])}")
-                
                 # Adding the person rented money to the person who owned the property
                 if board[bPos[i]][0] in own[0]:
                     money[0] +=3
@@ -53,7 +57,9 @@ while game == True:
         # property the player landed is available, and want to buy it? money will be subtracted from their initial money and property will be added into their owned portfolio
         else:
             print(f"Buy for {board[bPos[i]][1]}$")
-            if money[i] >= board[bPos[i]][1]:
+            if board[bPos[i]][1]== "no":
+                money[i] += 1
+            elif money[i] >= board[bPos[i]][1]:
                 money[i]=money[i]-board[bPos[i]][1]
                 own[i].append(available[bPos[i]])
                 available[bPos[i]]=""
